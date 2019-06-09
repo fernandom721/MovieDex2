@@ -11,5 +11,10 @@ data class Movie(
     val id: Long,
     @field:Json(name = "Title")
     @ColumnInfo(name = "Title")
-    val titulo: String
+    val title: String,
+    val year: String,
+    val genre: String,
+    val director: String,
+    val poster: String,
+    val rating: String
 )
