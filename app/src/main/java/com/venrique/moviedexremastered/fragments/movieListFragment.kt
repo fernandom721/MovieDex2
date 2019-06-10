@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,8 +71,13 @@ class movieListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        viewModel.getAll().observe(this, Observer {
-            adapter.updateList(it)
+        viewModel.getAll().observe(this, Observer { peliculas->
+            peliculas?.let {
+                adapter.updateList(it)
+                adapter.setOnClickListener(View.OnClickListener {
+                    Toast.makeText(context,"Seleccionaste: "+ peliculas.get(recycleMovie.getChildAdapterPosition(it)).title,Toast.LENGTH_SHORT).show()
+                })
+            }
         })
 
         btn_search.setOnClickListener {
