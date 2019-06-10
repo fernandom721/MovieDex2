@@ -4,8 +4,11 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.venrique.moviedexremastered.DAO.movieDAO
 import com.venrique.moviedexremastered.database.entidades.Movie
+import com.venrique.moviedexremastered.retrofit.MovieService
+import kotlinx.coroutines.Deferred
+import retrofit2.Response
 
-class MovieRepo (private val movieDao:movieDAO){
+class MovieRepo (private val movieDao:movieDAO, private val MovieService: MovieService){
     @WorkerThread
     suspend fun insert(repo: Movie){
         movieDao.insert(repo)
@@ -18,5 +21,8 @@ class MovieRepo (private val movieDao:movieDAO){
         return movieDao.nukeTable()
     }
 
+    fun retrieveReposAsync(user:String): Deferred<Response<List<Movie>>> {
+        return MovieService.getMovies(user)
+    }
 
 }
