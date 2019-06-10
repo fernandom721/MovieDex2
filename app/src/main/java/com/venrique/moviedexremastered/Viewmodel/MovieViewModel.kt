@@ -28,7 +28,7 @@ class MovieViewModel (private val app: Application) : AndroidViewModel(app){
         val response=repository.retrieveReposAsync(user).await()
 
         if(response.isSuccessful) with(response){
-            this.body()?.forEach {
+            this.body()?.search?.forEach {
                 this@MovieViewModel.insert(it)
             }
         }else with(response){

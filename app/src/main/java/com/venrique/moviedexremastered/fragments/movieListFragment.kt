@@ -7,8 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.venrique.moviedexremastered.R
+import com.venrique.moviedexremastered.Viewmodel.MovieViewModel
+import com.venrique.moviedexremastered.adapter.movieAdapter
+import kotlinx.android.synthetic.main.fragment_movie_list.*
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +40,12 @@ class movieListFragment : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    lateinit var adapter: movieAdapter
+    lateinit var viewModel: MovieViewModel
+    lateinit var title: EditText
+    lateinit var btn_search:Button
+    lateinit var recycleMovie: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,8 +58,27 @@ class movieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        val vista = inflater.inflate(R.layout.fragment_movie_list, container, false)
+        adapter = movieAdapter(ArrayList())
+        viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+        recycleMovie = vista.findViewById(R.id.rv_movies)
+        title = vista.findViewById(R.id.et_movie)
+        btn_search = vista.findViewById(R.id.search)
+
+        recycleMovie.apply {
+            adapter = this@movieListFragment.adapter
+            layoutManager = LinearLayoutManager(context)
+        }
+
+        viewModel.getAll().observe(this, Observer {
+            adapter.updateList(it)
+        })
+
+        btn_search.setOnClickListener {
+            viewModel.retrieveRepo(title.text.toString())
+        }
+
+        return vista
     }
 
     // TODO: Rename method, update argument and hook method into UI event

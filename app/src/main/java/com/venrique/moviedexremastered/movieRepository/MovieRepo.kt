@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.venrique.moviedexremastered.database.DAO.movieDAO
 import com.venrique.moviedexremastered.database.entidades.Movie
+import com.venrique.moviedexremastered.database.entidades.MovieResponse
 import com.venrique.moviedexremastered.retrofit.MovieService
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -21,7 +22,7 @@ class MovieRepo (private val movieDao:movieDAO, private val MovieService: MovieS
         return movieDao.nukeTable()
     }
 
-    fun retrieveReposAsync(user:String): Deferred<Response<List<Movie>>> {
+    fun retrieveReposAsync(user:String): Deferred<Response<MovieResponse>> {
         return MovieService.getMovies(user)
     }
 
