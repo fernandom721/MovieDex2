@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.venrique.moviedexremastered.DB.MovieDatabase
+import com.venrique.moviedexremastered.database.DB.MovieDatabase
 import com.venrique.moviedexremastered.database.entidades.Movie
 import com.venrique.moviedexremastered.movieRepository.MovieRepo
 import com.venrique.moviedexremastered.retrofit.MovieService
@@ -20,7 +20,7 @@ class MovieViewModel (private val app: Application) : AndroidViewModel(app){
         repository= MovieRepo(movieDAO, movieService)
     }
 
-    private suspend fun insert(repo: Movie)=repository.insert(repo)
+    private suspend fun insert(peli: Movie)=repository.insert(peli)
 
 
     fun retrieveRepo(user:String)=viewModelScope.launch {

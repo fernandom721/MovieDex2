@@ -1,4 +1,4 @@
-package com.venrique.moviedexremastered.DAO
+package com.venrique.moviedexremastered.database.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.venrique.moviedexremastered.database.entidades.Movie
-import com.venrique.moviedexremastered.movieRepository.MovieRepo
 
 @Dao
 interface movieDAO{

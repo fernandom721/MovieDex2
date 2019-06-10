@@ -2,7 +2,7 @@ package com.venrique.moviedexremastered.movieRepository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.venrique.moviedexremastered.DAO.movieDAO
+import com.venrique.moviedexremastered.database.DAO.movieDAO
 import com.venrique.moviedexremastered.database.entidades.Movie
 import com.venrique.moviedexremastered.retrofit.MovieService
 import kotlinx.coroutines.Deferred

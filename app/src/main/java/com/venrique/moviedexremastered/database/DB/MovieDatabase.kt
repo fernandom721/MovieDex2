@@ -1,10 +1,10 @@
-package com.venrique.moviedexremastered.DB
+package com.venrique.moviedexremastered.database.DB
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.venrique.moviedexremastered.DAO.movieDAO
+import com.venrique.moviedexremastered.database.DAO.movieDAO
 import com.venrique.moviedexremastered.database.entidades.Movie
 
 @Database(entities = [Movie::class],version = 1,exportSchema = false)
