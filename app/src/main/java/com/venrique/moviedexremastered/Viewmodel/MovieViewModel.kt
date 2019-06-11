@@ -10,6 +10,7 @@ import com.venrique.moviedexremastered.database.DB.MovieDatabase
 import com.venrique.moviedexremastered.database.entidades.Movie
 import com.venrique.moviedexremastered.movieRepository.MovieRepo
 import com.venrique.moviedexremastered.retrofit.MovieService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MovieViewModel (private val app: Application) : AndroidViewModel(app){
@@ -24,19 +25,20 @@ class MovieViewModel (private val app: Application) : AndroidViewModel(app){
     private suspend fun insert(peli: Movie)=repository.insert(peli)
 
 
-    fun retrieveRepo(user:String)=viewModelScope.launch {
+    fun retrieveRepo(user:String)=viewModelScope.launch(Dispatchers.IO) {
         this@MovieViewModel.nuke()
         val response=repository.retrieveReposAsync(user).await()
 
         if(response.isSuccessful) with(response){
             this.body()?.search?.forEach {
-                Log.d("Titulo",it.title)
-                val respuesta = repository.retrieveMovie(it.title).await()
+
+                val respuesta = repository.retrieveMovieAsync(it.id).await()
 
                 if (respuesta.isSuccessful) with(respuesta){
+                    Log.d("Titulo",it.title)
                     this@MovieViewModel.insert(this.body()!!)
                 }else with(respuesta){
-                    when(response.code()){
+                    when(respuesta.code()){
                         404->{
                             Toast.makeText(app, "F", Toast.LENGTH_LONG).show()
                         }

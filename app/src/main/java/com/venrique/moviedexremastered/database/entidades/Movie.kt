@@ -7,8 +7,9 @@ import com.squareup.moshi.Json
 
 @Entity(tableName = "peliculas")
 data class Movie(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    @PrimaryKey
+    @field:Json(name = "imdbID")
+    val id: String,
     @field:Json(name = "Title")
     val title: String,
     @field:Json(name = "Year")
@@ -21,17 +22,6 @@ data class Movie(
     val poster: String,
     @field:Json(name = "Rated")
     val rating: String
-)
-
-data class MovieList(
-    @field:Json(name = "Title")
-    val title: String,
-    @field:Json(name = "Year")
-    val year: String,
-    @field:Json(name = "Type")
-    val tipo: String,
-    @field:Json(name = "Poster")
-    val poster: String
 )
 
 data class MovieResponse(
