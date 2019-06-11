@@ -1,6 +1,7 @@
 package com.venrique.moviedexremastered.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +15,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.venrique.moviedexremastered.MovieViewerActivity
 
 import com.venrique.moviedexremastered.R
 import com.venrique.moviedexremastered.Viewmodel.MovieViewModel
 import com.venrique.moviedexremastered.adapter.movieAdapter
+import com.venrique.moviedexremastered.database.entidades.Movie
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.ArrayList
 
@@ -76,6 +79,7 @@ class movieListFragment : Fragment() {
                 adapter.updateList(it)
                 adapter.setOnClickListener(View.OnClickListener {
                     Toast.makeText(context,"Seleccionaste: "+ peliculas.get(recycleMovie.getChildAdapterPosition(it)).title,Toast.LENGTH_SHORT).show()
+
                 })
             }
         })
@@ -142,3 +146,4 @@ class movieListFragment : Fragment() {
             }
     }
 }
+

@@ -1,8 +1,10 @@
 package com.venrique.moviedexremastered
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.venrique.moviedexremastered.database.entidades.Movie
 import com.venrique.moviedexremastered.fragments.movieListFragment
 
 class MainActivity : AppCompatActivity(),movieListFragment.OnFragmentInteractionListener  {
@@ -17,6 +19,18 @@ class MainActivity : AppCompatActivity(),movieListFragment.OnFragmentInteraction
         val fragmentoLista = movieListFragment()
 
         supportFragmentManager.beginTransaction().replace(R.id.containerFrag,fragmentoLista).commit()
+
+    }
+
+
+
+    private fun elintent(movie: Movie){
+        val movieBundle = Bundle()
+        movieBundle.putParcelable("MOVIE", movie)
+        startActivity(Intent(this, MovieViewerActivity::class.java).putExtras(movieBundle))
+    }
+
+    private fun Bundle.putParcelable(s: String, movie: Movie) {
 
     }
 }
