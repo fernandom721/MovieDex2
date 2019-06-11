@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.bumptech.glide.Glide
 import com.venrique.moviedexremastered.R
 import com.venrique.moviedexremastered.database.entidades.Movie
 import kotlinx.android.synthetic.main.movie_card.view.*
@@ -35,6 +35,8 @@ class movieAdapter(var pelis:List<Movie>): RecyclerView.Adapter<movieAdapter.Vie
 
     override fun onBindViewHolder(holder: VieHolder, position: Int) {
         holder.bind(pelis[position])
+
+
     }
 
     fun updateList(newMovies: List<Movie>){
@@ -45,8 +47,16 @@ class movieAdapter(var pelis:List<Movie>): RecyclerView.Adapter<movieAdapter.Vie
 
     class VieHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
+
         fun bind(peli: Movie) = with(itemView){
+
+            Glide.with(itemView.context)
+                .load(peli.poster)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(img_portada)
             this.tv_name.text = peli.title
+            this.tv_year.text= peli.year
+
         }
 
     }
