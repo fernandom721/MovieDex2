@@ -26,4 +26,8 @@ class MovieRepo (private val movieDao:movieDAO, private val MovieService: MovieS
         return MovieService.getMovies(user)
     }
 
+    fun retrieveMovie(peli: String): Deferred<Response<Movie>>{
+        return MovieService.getMovieInfo(peli)
+    }
+
 }

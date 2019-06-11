@@ -13,17 +13,6 @@ data class Movie(
     val title: String,
     @field:Json(name = "Year")
     val year: String,
-    @field:Json(name = "Type")
-    val tipo: String,
-    @field:Json(name = "Poster")
-    val poster: String
-)
-
-data class MovieFull(
-    @field:Json(name = "Title")
-    val title: String,
-    @field:Json(name = "Year")
-    val year: String,
     @field:Json(name = "Genre")
     val genre: String,
     @field:Json(name = "Director")
@@ -32,6 +21,17 @@ data class MovieFull(
     val poster: String,
     @field:Json(name = "Rated")
     val rating: String
+)
+
+data class MovieList(
+    @field:Json(name = "Title")
+    val title: String,
+    @field:Json(name = "Year")
+    val year: String,
+    @field:Json(name = "Type")
+    val tipo: String,
+    @field:Json(name = "Poster")
+    val poster: String
 )
 
 data class MovieResponse(

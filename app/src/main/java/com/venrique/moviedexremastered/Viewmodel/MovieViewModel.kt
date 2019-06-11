@@ -1,6 +1,7 @@
 package com.venrique.moviedexremastered.Viewmodel
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -29,7 +30,18 @@ class MovieViewModel (private val app: Application) : AndroidViewModel(app){
 
         if(response.isSuccessful) with(response){
             this.body()?.search?.forEach {
-                this@MovieViewModel.insert(it)
+                Log.d("Titulo",it.title)
+                val respuesta = repository.retrieveMovie(it.title).await()
+
+                if (respuesta.isSuccessful) with(respuesta){
+                    this@MovieViewModel.insert(this.body()!!)
+                }else with(respuesta){
+                    when(response.code()){
+                        404->{
+                            Toast.makeText(app, "F", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
             }
         }else with(response){
             when(response.code()){

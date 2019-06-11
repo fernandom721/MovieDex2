@@ -18,6 +18,9 @@ interface MovieService {
     @GET("/?apikey=8b0b11f6")
     fun getMovies(@Query("s") peli: String): Deferred<Response<MovieResponse>>
 
+    @GET("/?apikey=8b0b11f6")
+    fun getMovieInfo(@Query("t") peli: String): Deferred<Response<Movie>>
+
     companion object{
         var INSTANCE: MovieService? = null
 
