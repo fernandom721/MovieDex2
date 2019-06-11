@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
     android:orientation="vertical"
-    tools:context=".fragments.movieListFragment"
-    android:padding="@dimen/sPadding">
+    tools:context=".fragments.movieListFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#333333"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
 
         <EditText
             android:id="@+id/et_movie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:hint="Titulo"/>
+            android:focusable="auto"
+            android:focusableInTouchMode="true"
+            android:hint="Titulo"
+            android:padding="17dp"
+            android:selectAllOnFocus="false"
+            android:textColor="#919090"
+            android:textColorLink="#FFFFFF"
+            android:theme="@style/EditTextTheme" />
 
         <Button
             android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Buscar"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00FFFFFF"
+            android:foreground="@android:drawable/ic_menu_search" />
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="#333333"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 </LinearLayout>
