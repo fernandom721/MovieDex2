@@ -27,7 +27,6 @@
             android:focusable="auto"
             android:focusableInTouchMode="true"
             android:hint="Titulo"
-            android:textColorHint="#919090"
             android:padding="17dp"
             android:selectAllOnFocus="false"
             android:textColor="#919090"

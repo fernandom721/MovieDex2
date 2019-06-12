@@ -1,5 +1,6 @@
 package com.venrique.moviedexremastered.fragments
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.venrique.moviedexremastered.R
 import com.venrique.moviedexremastered.Viewmodel.MovieViewModel
 import com.venrique.moviedexremastered.adapter.movieAdapter
 import com.venrique.moviedexremastered.database.entidades.Movie
+import com.venrique.moviedexremastered.interfaces.IComunicaFragments
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.ArrayList
 
@@ -49,6 +51,7 @@ class movieListFragment : Fragment() {
     lateinit var title: EditText
     lateinit var btn_search:Button
     lateinit var recycleMovie: RecyclerView
+    lateinit var interfaz: IComunicaFragments
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,8 +81,7 @@ class movieListFragment : Fragment() {
             peliculas?.let {
                 adapter.updateList(it)
                 adapter.setOnClickListener(View.OnClickListener {
-                    Toast.makeText(context,"Seleccionaste: "+ peliculas.get(recycleMovie.getChildAdapterPosition(it)).title,Toast.LENGTH_SHORT).show()
-
+                    interfaz.enviarMovie(peliculas.get(recycleMovie.getChildAdapterPosition(it)))
                 })
             }
         })
@@ -98,6 +100,11 @@ class movieListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        if(context is Activity){
+            interfaz = context as IComunicaFragments
+        }
+
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
