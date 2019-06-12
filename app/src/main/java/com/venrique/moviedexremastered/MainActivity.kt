@@ -13,7 +13,8 @@ import com.venrique.moviedexremastered.interfaces.IComunicaFragments
 class MainActivity : AppCompatActivity(),movieListFragment.OnFragmentInteractionListener, movieDetailFragment.OnFragmentInteractionListener, IComunicaFragments  {
     override fun enviarMovie(peli: Movie) {
         if(findViewById<LinearLayout>(R.id.containerFrag)==null){
-            TODO("not implemented")
+            fragmentoDetalle = this.supportFragmentManager.findFragmentById(R.id.fragDetail) as movieDetailFragment
+            fragmentoDetalle.asignarInfo(peli)
         }else{
             fragmentoDetalle = movieDetailFragment()
 
@@ -39,19 +40,17 @@ class MainActivity : AppCompatActivity(),movieListFragment.OnFragmentInteraction
 
         fragmentoLista = movieListFragment()
 
-        supportFragmentManager.beginTransaction().replace(R.id.containerFrag,fragmentoLista).commit()
+        if (findViewById<LinearLayout>(R.id.containerFrag)!=null){
+            if(savedInstanceState!=null){
+                return
+            }
+            supportFragmentManager.beginTransaction().replace(R.id.containerFrag,fragmentoLista).commit()
+        }else{
+            supportFragmentManager.beginTransaction().replace(R.id.fragList,fragmentoLista).commit()
+        }
+
+
 
     }
 
-
-
-    private fun elintent(movie: Movie){
-        val movieBundle = Bundle()
-        movieBundle.putParcelable("MOVIE", movie)
-        startActivity(Intent(this, MovieViewerActivity::class.java).putExtras(movieBundle))
-    }
-
-    private fun Bundle.putParcelable(s: String, movie: Movie) {
-
-    }
 }

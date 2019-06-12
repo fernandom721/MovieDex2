@@ -231,13 +231,13 @@
                     android:paddingRight="8dp"
                     android:layout_marginBottom="4dp"
 
-                    android:text="Actores:"
+                    android:text="Resumen:"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
 
                 <TextView
-                    android:id="@+id/actors_main_content_fragment"
+                    android:id="@+id/plot_main_content_fragment"
 
                     android:layout_width="0dp"
                     android:layout_weight="3"
