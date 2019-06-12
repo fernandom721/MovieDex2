@@ -22,7 +22,13 @@ data class Movie(
     @field:Json(name = "Poster")
     val poster: String,
     @field:Json(name = "Rated")
-    val rating: String
+    val rating: String,
+    @field:Json(name = "Plot")
+    val plot: String,
+    @field:Json(name= "Runtime")
+    val duration: String
+
+
 ): Serializable
 
 data class MovieResponse(

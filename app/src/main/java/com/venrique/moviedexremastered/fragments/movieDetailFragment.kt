@@ -16,6 +16,7 @@ import com.venrique.moviedexremastered.MovieViewerActivity
 import com.venrique.moviedexremastered.R
 import com.venrique.moviedexremastered.database.entidades.Movie
 import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
+import java.time.Duration
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +41,8 @@ class movieDetailFragment : Fragment() {
     lateinit var director: TextView
     lateinit var ano: TextView
     lateinit var poster: ImageView
+    lateinit var plot:TextView
+    lateinit var duration: TextView
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -68,6 +71,8 @@ class movieDetailFragment : Fragment() {
         director=view.findViewById(R.id.director_main_content_fragment)
         ano=view.findViewById(R.id.released_main_content_fragment)
         poster=view.findViewById(R.id.image_main_content_fragment)
+        plot=view.findViewById(R.id.plot_main_content_fragment)
+        duration=view.findViewById(R.id.runtime_main_content_fragment)
 
 
         val objetoMovie = arguments
@@ -92,8 +97,8 @@ class movieDetailFragment : Fragment() {
         director.text=datosMovie.director
         ano.text=datosMovie.year
         Glide.with(this).load(datosMovie.poster).into(poster)
-
-
+        plot.text=datosMovie.plot
+        duration.text=datosMovie.duration
 
 
     }
