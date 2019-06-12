@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.venrique.moviedexremastered.MovieViewerActivity
@@ -35,6 +36,10 @@ class movieDetailFragment : Fragment() {
     // TODO: INICIALIZACION DE LOS CAMPOS DE LA UI
     lateinit var rating: TextView
     lateinit var titulo: TextView
+    lateinit var genero: TextView
+    lateinit var director: TextView
+    lateinit var ano: TextView
+    lateinit var poster: ImageView
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -59,6 +64,11 @@ class movieDetailFragment : Fragment() {
 
         rating = view.findViewById(R.id.movie_rate_main_content_fragment)
         titulo = view.findViewById(R.id.movie_title_main_content_fragment)
+        genero= view.findViewById(R.id.genre_main_content_fragment)
+        director=view.findViewById(R.id.director_main_content_fragment)
+        ano=view.findViewById(R.id.released_main_content_fragment)
+        poster=view.findViewById(R.id.image_main_content_fragment)
+
 
         val objetoMovie = arguments
         var datosMovie: Movie? = null
@@ -75,14 +85,26 @@ class movieDetailFragment : Fragment() {
 
     // TODO: SE ASIGNA LA INFO A CADA CAMPO
     fun asignarInfo(datosMovie: Movie){
+
         rating.text = datosMovie.rating
         titulo.text = datosMovie.title
+        genero.text=datosMovie.genre
+        director.text=datosMovie.director
+        ano.text=datosMovie.year
+        Glide.with(this).load(datosMovie.poster).into(poster)
+
+
+
+
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

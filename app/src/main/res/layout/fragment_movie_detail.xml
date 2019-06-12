@@ -144,41 +144,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                >
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:text="Duración:"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:id="@+id/runtime_main_content_fragment"
-
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:text="@string/n_a_value"
-                    android:textSize="18sp"
-                    />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -216,41 +182,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:text="Actores:"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:id="@+id/actors_main_content_fragment"
-
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:text="@string/n_a_value"
-                    android:textSize="18sp"
-                    />
-
-            </LinearLayout>
 
 
         </LinearLayout>
