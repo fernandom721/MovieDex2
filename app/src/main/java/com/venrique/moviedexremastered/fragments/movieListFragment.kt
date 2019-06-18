@@ -26,6 +26,9 @@ import com.venrique.moviedexremastered.interfaces.IComunicaFragments
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.ArrayList
 
+import com.google.android.material.snackbar.Snackbar
+import kotlin.math.absoluteValue
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -77,7 +80,7 @@ class movieListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        viewModel.getAll().observe(this, Observer { peliculas->
+        viewModel.MoviesList("").observe(this, Observer { peliculas->
             peliculas?.let {
                 adapter.updateList(it)
                 adapter.setOnClickListener(View.OnClickListener {
@@ -87,7 +90,14 @@ class movieListFragment : Fragment() {
         })
 
         btn_search.setOnClickListener {
-            viewModel.retrieveRepo(title.text.toString())
+            //viewModel.retrieveRepo(title.text.toString())
+            val MovieName = title.text.toString()
+            if(MovieName.isNotEmpty() && MovieName.isNotBlank()){
+                viewModel.assignMovieNameToQuery(MovieName)
+                viewModel.ListResult.observe(this, Observer { lista ->
+                    adapter.updateList(lista)
+                })
+            }
         }
 
         return vista
